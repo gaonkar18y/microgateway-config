@@ -50,6 +50,20 @@ module.exports = function(){
        */
       ioInstance.setConsoleLogger(consoleLogger);
       networkInstance.setConsoleLogger(consoleLogger);
+    },
+    saveRemoteCacheConfig:function(config, options){
+      /**
+       * saves the merged config to redis db
+       * @param consoleLogger to use for console logging
+       */
+        networkInstance.uploadToRedis(config,options);
+    },
+    getRemoteCacheConfig:function(config, options, cb){
+      /**
+       * gets the merged config from redis db
+       * @param consoleLogger to use for console logging
+       */
+      networkInstance.getConfigFromRedis(config, options, cb);
     }
   };
 }();
