@@ -240,4 +240,17 @@ describe('default-validator module', () => {
         defaultValidator.validate(quotas);
         done();
     });
+
+    it('throws error for non-string noProxyFoundMessage', (done) => {
+        const invalidEdgemicroConfig = Object.assign({}, loadedConfig);
+        invalidEdgemicroConfig.edgemicro.noProxyFoundMessage = true;
+        let flag = false;
+        try {
+            defaultValidator.validate(invalidEdgemicroConfig);
+        } catch (err) {
+            flag = err.message.includes('config.edgemicro.noProxyFoundMessage is not an string');
+        }
+        assert(flag);
+        done();
+    });
 });
